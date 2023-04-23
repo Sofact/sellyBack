@@ -22,6 +22,9 @@ public class ICodigosImpl implements ICodigosService{
         return (List<Codigos>) codigosDao.findAll();
     }
 
+
+
+
     @Override
     @Transactional(readOnly = true)
     public Codigos findAllByCodCodigo(String codCodigo ) {

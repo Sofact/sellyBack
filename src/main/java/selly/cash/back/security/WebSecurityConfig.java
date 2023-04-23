@@ -29,7 +29,7 @@ import selly.cash.back.security.services.UserDetailsServiceImpl;
 public class WebSecurityConfig  {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
-
+    //hello
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
 
@@ -84,13 +84,13 @@ public class WebSecurityConfig  {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        System.out.println("Filter chaim");
-                http.cors().and().csrf().disable()
+
+
+        http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/test/**").permitAll()
-                .anyRequest().authenticated();
+                .authorizeRequests().requestMatchers("/auth/registro").permitAll()
+                .anyRequest().permitAll();
 
         http.authenticationProvider(authenticationProvider());
 

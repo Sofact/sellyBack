@@ -11,19 +11,19 @@ import org.hibernate.annotations.Immutable;
 public class ViewPerfil {
 
     @Id
-    @Column(name="usu_id")
+    @Column(name="user_id")
     private Long usuId;
 
-    @Column(name="cov_id")
+    @Column(name="conv_id")
     private Long covId;
 
     @Column(name="mun_id")
     private Long munId;
 
-    @Column(name="usu_correo")
+    @Column(name="user_email")
     private String usuCorreo;
 
-    @Column(name="usu_nombre")
+    @Column(name="user_name")
     private String usuNombre;
 
     @Column(name="cli_banco")

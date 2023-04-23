@@ -12,4 +12,5 @@ public interface ICodigosDao extends CrudRepository<Codigos, Long> {
     public Codigos findAllByCodCodigo(String codCodigo);
 
 
+
 }

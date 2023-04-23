@@ -10,4 +10,6 @@ public interface IViewComisionDao extends CrudRepository<ViewComision, Long> {
 
 
     List<ViewComision> findViewComisionsByComEstado(String estado);
+
+    ViewComision findTopByUsuIdOrderByComIdDesc(String usuId);
 }

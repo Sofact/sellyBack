@@ -14,4 +14,8 @@ public interface IViewComisionService {
     List<String> findAllDescripcion();
 
     public Comision save(Comision comision);
+
+    ViewComision findTopByUsuIdOrderByComIdDesc(String usuId);
+
+
 }

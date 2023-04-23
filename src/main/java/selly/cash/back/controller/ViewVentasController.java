@@ -41,4 +41,18 @@ public class ViewVentasController {
         }
         return total;
     }
+
+    @GetMapping("/total")
+    public Float total(){
+
+        float total = 0;
+        List<ViewVentas> ventas = viewVentasService.findAll();
+
+        for(ViewVentas venta: ventas){
+
+            total += venta.getComValor();
+
+        }
+        return total;
+    }
 }

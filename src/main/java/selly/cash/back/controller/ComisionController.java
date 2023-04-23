@@ -8,7 +8,7 @@ import selly.cash.back.models.entity.Comision;
 import selly.cash.back.models.services.IClienteService;
 import selly.cash.back.models.services.IComisionService;
 
-@CrossOrigin(origins={"http:localhost:4200"})
+@CrossOrigin(origins={"http://208.109.37.247"})
 @RestController
 @RequestMapping("/comision")
 public class ComisionController {

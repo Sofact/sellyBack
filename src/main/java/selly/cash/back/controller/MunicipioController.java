@@ -9,7 +9,7 @@ import selly.cash.back.models.services.IMunicipioService;
 
 import java.util.List;
 
-@CrossOrigin(origins={"http:localhost:4200"})
+@CrossOrigin(origins={"http://208.109.37.247"})
 @RestController
 @RequestMapping("/municipio")
 public class MunicipioController {

@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.List;
 import java.io.File;
 
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins= "http://208.109.37.247")
 @RestController
 @RequestMapping("/codigos")
 public class CodigosRestController {
@@ -77,7 +77,7 @@ public class CodigosRestController {
     public Codigos crear(@RequestBody Codigos codigos) throws NoSuchAlgorithmException, IOException, WriterException {
 
 
-        String text = "http://locaLhost:4200/registro?code=" ;
+        String text = "http://208.109.37.247/registro?code=" ;
         System.out.println("id en el save code:::"+ codigos.getCodId());
         Long cantidad=codigos.getCodId();
         Codigos cod = null;

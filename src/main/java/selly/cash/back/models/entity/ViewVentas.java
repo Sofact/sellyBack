@@ -22,10 +22,10 @@ public class ViewVentas {
     @Column(name="com_valor")
     private float comValor;
 
-    @Column(name="usu_id")
+    @Column(name="user_id")
     private Long usuId;
 
-    @Column(name="usu_nombre")
+    @Column(name="user_email")
     private String usuNombre;
 
     @Column(name="cli_id")

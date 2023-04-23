@@ -70,6 +70,8 @@ public class JwtAuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser( @RequestBody SignupRequest signUpRequest) {
+
+        System.out.println("Ingreso al singUp"+ signUpRequest.getMunId());
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -82,13 +84,23 @@ public class JwtAuthenticationController {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
 
+
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getConvId(),
+                signUpRequest.getMunId(),
+                signUpRequest.getCliBanco(),
+               signUpRequest.getCliTipoCuenta(),
+                signUpRequest.getCliNumCuenta()
+        );
 
+        System.out.println("El user a cargar"+ user.getEmail());
+        /*
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
+
 
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -118,6 +130,9 @@ public class JwtAuthenticationController {
         }
 
         user.setRoles(roles);
+
+        */
+
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

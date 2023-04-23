@@ -34,4 +34,9 @@ public class IViewComisionImpl  implements IViewComisionService{
     public Comision save(Comision comision) {
         return null;
     }
+
+    @Override
+    public ViewComision findTopByUsuIdOrderByComIdDesc(String usuId) {
+        return viewComisionDao.findTopByUsuIdOrderByComIdDesc(usuId);
+    }
 }

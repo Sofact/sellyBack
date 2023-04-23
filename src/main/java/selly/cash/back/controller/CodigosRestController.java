@@ -103,10 +103,11 @@ public class CodigosRestController {
 
         System.out.println("el parts::"+parts[0]);
         System.out.println("el partsother::"+parts[1]);
+        String[] codigoPartir = parts[1].split("IDTOSPLIT");
 
         Codigos codigoActual = codigoService.findAllByCodCodigo("[B@"+parts[0]);
 
-        saveComision(codigoActual.getProId(), Long.parseLong(parts[1]));
+        saveComision(codigoActual.getProId(), Long.parseLong(codigoPartir[0]), Long.parseLong(codigoPartir[1]));
         codigoActual.setCodEstado("redimido");
 
 
@@ -116,11 +117,11 @@ public class CodigosRestController {
 
     }
 
-    public Comision saveComision (Long proId, Long usuId){
+    public Comision saveComision (Long proId, Long usuId, Long cliId){
 
+        System.out.println("El id del cliente"+ cliId);
         Producto product = productoService.findById(proId);
         java.util.Date fecha = new Date();
-        Long id = 1L;
 
         Comision com = new Comision();
 
@@ -129,7 +130,7 @@ public class CodigosRestController {
         com.setComValor(product.getProValor());
         com.setUsuId(usuId);
         com.setProId(product.getProId());
-        com.setCliId(id);
+        com.setCliId(cliId);
 
         return comisionService.save(com);
 

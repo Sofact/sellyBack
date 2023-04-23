@@ -30,6 +30,27 @@ public class User {
     @Column(name="user_password")
     private String password;
 
+    @Column(name="conv_id")
+    private Long convId;
+
+    @Column(name="mun_id")
+    private Long munId;
+
+    @Column(name="role")
+    private Long role;
+
+    @Column(name="cli_banco")
+    private String cliBanco;
+
+    @Column(name="cli_tipo_cuenta")
+    private String cliTipoCuenta;
+
+    @Column(name="cli_num_cuenta")
+    private String cliNumCuenta;
+
+    @Column(name="cli_password")
+    private String cliPassword;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -39,11 +60,28 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, Long convId) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.convId = convId;
     }
+
+    public User(String username, String email, String password, Long convId, Long munId, String cliBanco, String cliTipoCuenta, String cliNumCuenta) {
+
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.convId = convId;
+        this.munId = munId;
+        this.cliBanco = cliBanco;
+        this.cliTipoCuenta = cliTipoCuenta;
+        this.cliNumCuenta = cliNumCuenta;
+    }
+
+    public User(String username, String email, String encode, Long convId, Long munId) {
+    }
+
 
     public Long getId() {
         return id;
@@ -83,5 +121,61 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Long getConvId() {
+        return convId;
+    }
+
+    public void setConvId(Long convId) {
+        this.convId = convId;
+    }
+
+    public Long getRole() {
+        return role;
+    }
+
+    public void setRole(Long role) {
+        this.role = role;
+    }
+
+    public Long getMunId() {
+        return munId;
+    }
+
+    public void setMunId(Long munId) {
+        this.munId = munId;
+    }
+
+    public String getCliBanco() {
+        return cliBanco;
+    }
+
+    public void setCliBanco(String cliBanco) {
+        this.cliBanco = cliBanco;
+    }
+
+    public String getCliTipoCuenta() {
+        return cliTipoCuenta;
+    }
+
+    public void setCliTipoCuenta(String cliTipoCuenta) {
+        this.cliTipoCuenta = cliTipoCuenta;
+    }
+
+    public String getCliNumCuenta() {
+        return cliNumCuenta;
+    }
+
+    public void setCliNumCuenta(String cliNumCuenta) {
+        this.cliNumCuenta = cliNumCuenta;
+    }
+
+    public String getCliPassword() {
+        return cliPassword;
+    }
+
+    public void setCliPassword(String cliPassword) {
+        this.cliPassword = cliPassword;
     }
 }

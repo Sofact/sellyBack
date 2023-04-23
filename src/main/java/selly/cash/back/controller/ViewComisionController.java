@@ -30,15 +30,17 @@ public class ViewComisionController {
         return comisionService.findAllByEstado(estado);
     }
 
-    @GetMapping("/totalEstado/{estado}")
-    public float totalEstado(@PathVariable String estado){
+    @GetMapping("/totalEstado/{estado}/{usuId}")
+    public float totalEstado(@PathVariable String estado, @PathVariable Long usuId){
 
+        System.out.println("El user::"+ usuId);
         float total = 0;
        List <ViewComision>  comisiones= comisionService.findAllByEstado(estado);
 
         for(ViewComision comision: comisiones){
 
-            total += comision.getComValor();
+            if(comision.getUsuId() == usuId)
+             total += comision.getComValor();
 
         }
 
@@ -46,5 +48,11 @@ public class ViewComisionController {
         return total;
     }
 
+    @GetMapping("/lastComision/{usuId}")
+    public ViewComision getLastComision(@PathVariable String usuId){
+
+        ViewComision viewComision = comisionService.findTopByUsuIdOrderByComIdDesc(usuId);
+        return viewComision;
+    }
 
 }

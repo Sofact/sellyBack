@@ -17,12 +17,10 @@ import selly.cash.back.models.services.IComisionService;
 import selly.cash.back.models.services.IGeneradorService;
 import selly.cash.back.models.services.IProductoService;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
-import java.io.File;
 
 @CrossOrigin(origins= "http://localhost:4200")
 @RestController
@@ -86,13 +84,51 @@ public class CodigosRestController {
             codigos.setCodId((long) x);
             codigos.setCodCodigo(generadorService.generar(codigos));
             codigos.setCodUrl(text+codigos.getCodCodigo());
-            File f = new File("src/main/resources/static/"+codigos.getCodCodigo()+".png");
+            File f = new File("F:\\ANGULAR\\04-pipesApp\\src\\assets\\images\\"+codigos.getCodCodigo()+".png");
             System.out.println("Esta generando codigos::"+ codigos.getCodCodigo());
             generadorService.generarQR(f, codigos.getCodUrl(), 300, 300);
 
             cod= codigoService.save(codigos);
         }
+        crearArchivo();
+
+
         return cod;
+    }
+
+    public void crearArchivo(){
+
+        File archivoBatch = new File("src/main/resources/static/copy.bat");
+
+        try {
+            FileWriter escritorArchivo = new FileWriter(archivoBatch);
+            BufferedWriter escritorBuffer = new BufferedWriter(escritorArchivo);
+
+            escritorBuffer.write("COPY F:\\2023\\VITHALIA\\DESARROLLO\\BACKEND\\back\\src\\main\\resources\\static\\[B@4fe42bfc.png F:\\ANGULAR\\04-pipesApp\\src\\assets\\images");
+
+
+            escritorBuffer.close();
+            escritorArchivo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ejecutarBat(){
+
+        try {
+            Process proceso = Runtime.getRuntime().exec("src/main/resources/static/copy.bat");
+
+            // Espera a que el proceso termine antes de continuar
+            proceso.waitFor();
+
+            // Obtiene el código de salida del proceso
+            int codigoSalida = proceso.exitValue();
+
+            System.out.println("El archivo batch se ha ejecutado con éxito. Código de salida: " + codigoSalida);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @PutMapping("/update/{codCodigo}")

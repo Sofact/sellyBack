@@ -77,7 +77,7 @@ public class CodigosRestController {
     public Codigos crear(@RequestBody Codigos codigos) throws NoSuchAlgorithmException, IOException, WriterException {
 
 
-        String text = "http://208.109.37.247/registro?code=" ;
+        String text = "http://208.109.37.247/auth/loginCliente/" ;
         System.out.println("id en el save code:::"+ codigos.getCodId());
         Long cantidad=codigos.getCodId();
         Codigos cod = null;

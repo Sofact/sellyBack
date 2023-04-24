@@ -10,7 +10,7 @@ import selly.cash.back.models.services.IProductoService;
 
 import java.util.List;
 
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins={"http://208.109.37.247"})
 @RestController
 @RequestMapping( "/productos")
 public class ProductosController {

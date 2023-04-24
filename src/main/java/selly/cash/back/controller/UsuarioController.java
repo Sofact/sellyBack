@@ -9,7 +9,7 @@ import selly.cash.back.models.services.IUsuarioService;
 
 import java.util.Optional;
 
-@CrossOrigin(origins={"http:localhost:4200"})
+@CrossOrigin(origins={"http://208.109.37.247"})
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {

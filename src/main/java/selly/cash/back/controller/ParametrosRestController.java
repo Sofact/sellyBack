@@ -12,7 +12,7 @@ import selly.cash.back.models.services.IParametroService;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins= {"http://208.109.37.247"})
+@CrossOrigin(origins= {"${myapp.datasource.url}"})
 @RestController
 @RequestMapping("/parametros")
 public class ParametrosRestController {

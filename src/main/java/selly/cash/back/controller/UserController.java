@@ -8,7 +8,7 @@ import selly.cash.back.models.services.IUserService;
 
 import java.util.Optional;
 
-@CrossOrigin(origins={"http:localhost:4200"})
+@CrossOrigin(origins={"${myapp.datasource.url}"})
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {

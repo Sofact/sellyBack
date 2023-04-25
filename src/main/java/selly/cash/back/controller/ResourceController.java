@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@CrossOrigin(origins= "http://208.109.37.247")
+@CrossOrigin(origins= "${myapp.datasource.url}")
 @RestController
 
 public class ResourceController {

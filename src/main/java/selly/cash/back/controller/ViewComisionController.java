@@ -10,7 +10,7 @@ import selly.cash.back.models.services.IViewComisionService;
 import java.util.List;
 import java.util.function.Consumer;
 
-@CrossOrigin(origins={"http://208.109.37.247"})
+@CrossOrigin(origins={"${myapp.datasource.url}"})
 @RestController
 @RequestMapping( "/viewComision")
 public class ViewComisionController {

@@ -57,7 +57,7 @@ public class PdfController {
         List<String> qrCodeTexts = new ArrayList<>();
         for( int cant=0; cant<cantidad; cant++){
             codigo.setCodId((long) cant);
-            codigo.setCodCodigo(generadorService.generar(codigo));
+         //   codigo.setCodCodigo(generadorService.generar(codigo));
 
             qrCodeTexts.add(text+codigo.getCodCodigo());
         }

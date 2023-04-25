@@ -1,6 +1,7 @@
 package selly.cash.back.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +27,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-@CrossOrigin(origins = "http://208.109.37.247:80' ", maxAge = 3600)
+
+@CrossOrigin(origins = "${myapp.datasource.url}", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class JwtAuthenticationController {

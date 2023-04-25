@@ -21,7 +21,7 @@ public class CrossOriginConfig {
         System.out.println("Ingreso a la configuracion");
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList("http://208.109.37.247:80")); // Required for PUT method
+        config.setAllowedOrigins(Arrays.asList("${myapp.datasource.url}")); // Required for PUT method
 
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE")); // Required for PUT method
         config.addExposedHeader(headers);

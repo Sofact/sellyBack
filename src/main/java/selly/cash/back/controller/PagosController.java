@@ -8,7 +8,7 @@ import selly.cash.back.models.services.IPagosService;
 
 import java.util.List;
 
-@CrossOrigin(origins={"http://208.109.37.247"})
+@CrossOrigin(origins={"${myapp.datasource.url}"})
 @RestController
 @RequestMapping("/pagos")
 public class PagosController {

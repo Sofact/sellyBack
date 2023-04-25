@@ -22,7 +22,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
-@CrossOrigin(origins= "http://208.109.37.247")
+@CrossOrigin(origins= "${myapp.datasource.url}")
 @RestController
 @RequestMapping("/codigos")
 public class CodigosRestController {

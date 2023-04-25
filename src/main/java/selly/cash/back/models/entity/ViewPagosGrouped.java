@@ -17,10 +17,10 @@ public class ViewPagosGrouped {
     @Column(name="com_estado")
     private String convEstado;
 
-    @Column(name="usu_correo")
+    @Column(name="user_email")
     private String usuCorreo;
 
-    @Column(name="usu_nombre")
+    @Column(name="user_name")
     private String usuNombre;
 
     @Column(name="cli_banco")

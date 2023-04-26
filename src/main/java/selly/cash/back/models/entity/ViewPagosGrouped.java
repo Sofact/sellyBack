@@ -114,6 +114,8 @@ public class ViewPagosGrouped {
         this.covId = covId;
     }
 
+
+
     public String getSumValor() {
         return sumValor;
     }

@@ -1,0 +1,1 @@
+COPY F:\2023\VITHALIA\DESARROLLO\BACKEND\back\src\main\resources\static\[B@4fe42bfc.png F:\ANGULAR\04-pipesApp\src\assets\images

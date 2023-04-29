@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 
 
-@CrossOrigin(origins = "${myapp.datasource.url}", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class JwtAuthenticationController {

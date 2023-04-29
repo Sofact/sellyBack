@@ -1,23 +1,36 @@
 package selly.cash.back.controller;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @CrossOrigin(origins= "${myapp.datasource.url}")
 @RestController
 
 public class ResourceController {
-
+/*
     @Bean
     public WebMvcConfigurer corsConfigurerCodigoLogin() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://208.109.37.247").allowedMethods("GET", "POST","PUT", "DELETE", "OPTIONS");
+                registry.addMapping("/**").allowedOrigins("${myapp.datasource.url}").allowedMethods("GET", "POST","PUT", "DELETE", "OPTIONS");
             }
         };
+    }*/
+    @Configuration
+    @EnableWebMvc
+    public class WebConfig implements WebMvcConfigurer {
+
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/**")
+                    .allowedOrigins("*")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE");
+        }
     }
 
     @GetMapping("/login")

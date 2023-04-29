@@ -46,7 +46,7 @@ public class PdfController {
 
 
 
-        String text = "http://locaLhost:4200/auth/loginCliente/" ;
+        String text = "https://sellycash.com/auth/loginCliente/" ;
         System.out.println("id en el save code:::"+ codigo.getCodId());
         Long cantidad=codigo.getCodId();
         Codigos cod = null;

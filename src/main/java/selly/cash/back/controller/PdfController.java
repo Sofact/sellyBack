@@ -1,6 +1,9 @@
 package selly.cash.back.controller;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.*;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ import selly.cash.back.models.services.ICodigosService;
 import selly.cash.back.models.services.IGeneradorService;
 import selly.cash.back.utilities.QrCodeGenerator;
 
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -21,8 +26,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 
 @CrossOrigin(origins= "${myapp.datasource.url}")
@@ -40,8 +43,8 @@ public class PdfController {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Document document = new Document();
         PdfWriter.getInstance(document, baos);
-        document.setPageSize(new Rectangle(270, 567));
-        document.setMargins(20,2,0, 2);
+        document.setPageSize(new Rectangle(272, 567));
+        document.setMargins(5,2,0, 2);
         document.open();
 
 
@@ -69,7 +72,7 @@ public class PdfController {
             qrCodeTexts.add(text+codigo.getCodCodigo());
         }
 
-        PdfPTable table = new PdfPTable(3);
+        PdfPTable table = new PdfPTable(6);
         Paragraph paragraph = new Paragraph();
         int contador =1;
         for (String qrCodeText : qrCodeTexts) {
@@ -78,7 +81,47 @@ public class PdfController {
             Image image = Image.getInstance(qrCodeImage, null);
             image.setAlignment(4);
 
-            table.addCell(new PdfPCell(image));
+            PdfPCell imagen = (new PdfPCell(image));
+            imagen.setPaddingRight(22f);
+            imagen.setPaddingLeft(10f);
+
+
+
+            PdfPCell cell = new PdfPCell(new Phrase("Coffe Colageno" , new Font(Font.FontFamily.HELVETICA, 8)));
+            cell.setRotation(-90);
+          //  cell.setPaddingTop(5);
+            cell.setPadding(0f);
+            cell.setPaddingTop(8);
+            cell.setFixedHeight(0f);
+
+
+
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(15f);
+            table.setSpacingAfter(25f);
+            table.setHorizontalAlignment(4);
+
+            table.addCell(imagen);
+            table.addCell(cell);
+
+
+
+
+         //   PdfPCell cell = new PdfPCell(new Phrase("Texto de ejemplo"));
+            // Agregamos el texto rotado -90 grados
+            /*
+            Graphics2D graphics = qrCodeImage.createGraphics();
+            graphics.setColor(Color.BLACK);
+            //graphics.setFont(new Font("Arial", Font.NORMAL, 12));
+            AffineTransform at = new AffineTransform();
+            at.rotate(-Math.PI / 2);
+            graphics.setTransform(at);
+
+            graphics.drawString("Coffe Colageno", -170, 10);
+            table.addCell(new PdfPCell(graphics));
+            graphics.dispose();
+*/
+
         //    paragraph.add(image);
          //  paragraph.setSpacingBefore(30);
         System.out.println("El contador:::"+contador);
@@ -99,5 +142,7 @@ public class PdfController {
         response.getOutputStream().write(baos.toByteArray());
         response.flushBuffer();
     }
+
+
 
 }

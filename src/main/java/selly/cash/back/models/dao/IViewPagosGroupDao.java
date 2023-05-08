@@ -9,6 +9,7 @@ public interface IViewPagosGroupDao extends CrudRepository <ViewPagosGrouped, Lo
 
     List<ViewPagosGrouped> findViewPagosGroupedByConvEstado(String estado);
 
+ //   List<ViewPagosGrouped> findViewPagosByConv  GroupedByConvEstado(String estado);
 
 }
 

@@ -23,6 +23,7 @@ import selly.cash.back.security.services.UserDetailsImpl;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -59,15 +60,19 @@ public class JwtAuthenticationController {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
+      /*  List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+          */
+
+        Optional<User> user = userRepository.findByUsername(userDetails.getUsername());
+                System.out.println("El role::"+ user.get().getRole());
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
+                user.get().getRole()));
     }
 
     @PostMapping("/signup")

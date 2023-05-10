@@ -153,6 +153,24 @@ public class CodigosRestController {
 
     }
 
+    @GetMapping("/validate/{codCodigo}")
+    public boolean validate ( @PathVariable String codCodigo){
+
+        System.out.println("ingreso a validar"+ codCodigo);
+
+
+        Codigos codigoActual = codigoService.findAllByCodCodigo("[B@"+codCodigo);
+
+        if(codigoActual.getCodEstado().equals("redimido") ){
+            System.out.println("entro por el redimido");
+            return false;
+        }else{
+            System.out.println("entro por el activo"+codigoActual.getCodEstado());
+            return true;
+        }
+
+    }
+
     public Comision saveComision (Long proId, Long usuId, Long cliId){
 
         System.out.println("El id del cliente"+ cliId);

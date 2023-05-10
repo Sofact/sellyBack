@@ -21,4 +21,12 @@ public class ConsultaSQL {
         return resultado;
 
     }
+
+    public List<Map<String, Object>> ejecutarActualizacion(String query) {
+        String sql = query ;//"SELECT * FROM sc.convenio";
+         jdbcTemplate.update(sql);
+
+        return null;
+
+    }
 }

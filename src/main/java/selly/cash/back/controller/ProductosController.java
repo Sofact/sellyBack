@@ -20,7 +20,7 @@ public class ProductosController {
 
     @GetMapping("/all")
     public List<Producto> index(){
-
+        System.out.println("Productos all");
         return productoService.findAll();
     }
 

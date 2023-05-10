@@ -25,10 +25,10 @@ public class ViewPagos {
     @Column(name="usu_id")
     private Long usuId;
 
-    @Column(name="usu_nombre")
+    @Column(name="user_name")
     private String usuNombre;
 
-    @Column(name="usu_correo")
+    @Column(name="user_email")
     private String usuCorreo;
 
     @Column(name="cli_banco")

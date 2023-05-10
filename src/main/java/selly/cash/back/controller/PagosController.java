@@ -1,8 +1,10 @@
 package selly.cash.back.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import selly.cash.back.models.entity.Clientes;
+import selly.cash.back.models.entity.Comision;
 import selly.cash.back.models.entity.Pagos;
 import selly.cash.back.models.services.IPagosService;
 
@@ -24,4 +26,13 @@ public class PagosController {
         System.out.println(pag.get(0).getPagValor());
         return  pagosService.findPagosByUsuId(id);
     }
+
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pagos create (@RequestBody Pagos pagos){
+
+        System.out.println("El nombre del cliente en save::::::"+pagos.getUsuId());
+        return pagosService.save(pagos);
+    }
+
 }

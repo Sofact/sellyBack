@@ -67,7 +67,7 @@ public class PdfController {
         List<String> qrCodeTexts = new ArrayList<>();
         for( int cant=0; cant<cantidad; cant++){
             codigo.setCodId((long) cant);
-         //   codigo.setCodCodigo(generadorService.generar(codigo));
+            codigo.setCodCodigo(generadorService.generar(codigo));
 
             qrCodeTexts.add(text+codigo.getCodCodigo());
         }
@@ -77,6 +77,7 @@ public class PdfController {
         int contador =1;
         for (String qrCodeText : qrCodeTexts) {
 
+            System.out.println("codigos::"+ qrCodeText);
             BufferedImage qrCodeImage = QrCodeGenerator.generateQrCode(qrCodeText, 76, 76);
             Image image = Image.getInstance(qrCodeImage, null);
             image.setAlignment(4);

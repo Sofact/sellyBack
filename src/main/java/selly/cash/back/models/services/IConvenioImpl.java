@@ -29,6 +29,11 @@ public class IConvenioImpl implements IConvenioService{
 
     @Override
     public Convenio findById(Long id) {
-        return null;
+        return convenioDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void delete(Long id) {
+        convenioDao.delete(findById(id));
     }
 }

@@ -15,4 +15,6 @@ public interface IConvenioService {
     public Convenio save(Convenio convenio);
 
     Convenio findById(Long id);
+
+    void delete(Long id);
 }

@@ -50,7 +50,7 @@ public class ComisionController {
                         "sc.users u\n" +
                         "on c.usu_id = u.user_id \n" +
                         "where u.user_name = '"+ nombre +
-                        "' and c.com_fecha <= '"+  fecha +"')";
+                        "' and c.com_fecha <= '"+  fecha +" 23:59:59.496')";
 
         consulta.ejecutarActualizacion(query);
         System.out.println("El resultado::");

@@ -54,7 +54,7 @@ public class ViewPagosGroupedController {
                 "     JOIN sc.convenio co ON u.conv_id = co.cov_id\n" +
                 "   WHERE c.com_fecha <= '"+ fechaFiltro +" 23:59:59.496'"+
                 "   and c.com_estado = 'pendiente'\n" +
-                "  GROUP BY c.usu_id, c.com_estado, u.user_name, u.user_email, u.cli_banco, u.cli_num_cuenta, u.cli_tipo_cuenta, co.cov_nombre,  co.cov_id;";
+                "  GROUP BY c.usu_id, c.com_estado, u.user_name, u.user_email, u.cli_banco, u.cli_num_cuenta, u.cli_tipo_cuenta, co.cov_nombre,  co.cov_id order By user_email;";
         System.out.println("Consulta:::"+consulta.ejecutarConsulta(query));
         return  consulta.ejecutarConsulta(query);
     }

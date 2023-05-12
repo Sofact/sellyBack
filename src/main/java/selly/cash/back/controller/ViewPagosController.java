@@ -45,4 +45,25 @@ public class ViewPagosController  {
 
         return  viewPagosService.findViewPagosByUsuId(id);
     }
+
+    @GetMapping("/totalId/{id}")
+    public float searchId (@PathVariable Long id){
+
+
+        System.out.println("El ID by id:::"+id);
+        float total = 0;
+
+        List<ViewPagos> pagos = viewPagosService.findViewPagosByUsuId(id);
+
+        for(ViewPagos pay: pagos ){
+
+            total += pay.getPagValor();
+        }
+
+        System.out.println("El total by id:::"+id);
+
+        return  total;
+
+
+    }
 }

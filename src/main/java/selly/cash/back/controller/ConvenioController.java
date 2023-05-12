@@ -38,4 +38,14 @@ public class ConvenioController {
         System.out.println("El nombre del cliente::::::"+convenio.getCovNombre());
         return convenioService.save(convenio);
     }
+
+    @DeleteMapping("/del/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Long delete (@PathVariable long id){
+
+        System.out.println("Borrando el id::" + id);
+        convenioService.delete(id);
+        return id;
+    }
+
 }

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import selly.cash.back.models.entity.Codigos;
+import selly.cash.back.models.entity.Producto;
 import selly.cash.back.models.services.ICodigosService;
 import selly.cash.back.models.services.IGeneradorService;
+import selly.cash.back.models.services.IProductoService;
 import selly.cash.back.utilities.QrCodeGenerator;
 
 import java.awt.*;
@@ -38,6 +40,9 @@ public class PdfController {
     @Autowired
     private ICodigosService codigoService;
 
+    @Autowired
+    private IProductoService productoService;
+
     @PostMapping("/generate-pdf")
     public void generatePdf(@RequestBody Codigos codigo ,HttpServletResponse response) throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -56,7 +61,7 @@ public class PdfController {
 
         for (int x=0; x<cantidad; x++) {
             codigo.setCodId((long) x);
-            codigo.setCodCodigo(generadorService.generar(codigo));
+            //codigo.setCodCodigo(generadorService.generar(codigo));
             codigo.setCodUrl(text+codigo.getCodCodigo());
             File f = new File("F:\\ANGULAR\\04-pipesApp\\src\\assets\\images\\"+codigo.getCodCodigo()+".png");
             System.out.println("Esta generando codigos::"+ codigo.getCodCodigo());
@@ -86,9 +91,10 @@ public class PdfController {
             imagen.setPaddingRight(22f);
             imagen.setPaddingLeft(10f);
 
-
-
-            PdfPCell cell = new PdfPCell(new Phrase("Coffe Colageno" , new Font(Font.FontFamily.HELVETICA, 8)));
+            System.out.println("El codigo::"+codigo.getProId());
+            Producto producto = productoService.findById(codigo.getProId());
+            System.out.println("El producto::"+producto.getProDescripcion());
+            PdfPCell cell = new PdfPCell(new Phrase(producto.getProDescripcion() , new Font(Font.FontFamily.HELVETICA, 8)));
             cell.setRotation(-90);
           //  cell.setPaddingTop(5);
             cell.setPadding(0f);

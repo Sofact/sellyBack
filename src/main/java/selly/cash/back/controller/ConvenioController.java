@@ -3,9 +3,7 @@ package selly.cash.back.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import selly.cash.back.models.entity.Clientes;
 import selly.cash.back.models.entity.Convenio;
-import selly.cash.back.models.services.IClienteService;
 import selly.cash.back.models.services.IConvenioService;
 
 import java.util.List;
@@ -40,12 +38,17 @@ public class ConvenioController {
     }
 
     @DeleteMapping("/del/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Long delete (@PathVariable long id){
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public HttpStatus delete (@PathVariable long id){
 
         System.out.println("Borrando el id::" + id);
-        convenioService.delete(id);
-        return id;
+
+        try {
+            convenioService.delete(id);
+            return HttpStatus.OK;
+        }catch (Exception e){
+            return HttpStatus.BAD_REQUEST;
+        }
     }
 
 }

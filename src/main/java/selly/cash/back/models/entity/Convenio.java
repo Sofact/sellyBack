@@ -10,7 +10,7 @@ public class Convenio {
     @Id
     @GeneratedValue(generator=Convenio.SQ_CONVENIO, strategy= GenerationType.AUTO)
     @SequenceGenerator(schema="sc", name=Convenio.SQ_CONVENIO ,   sequenceName=Convenio.SQ_CONVENIO, initialValue=1, allocationSize=1)
-    @Column(name="cov_id")
+    @Column(name="conv_id")
     private Long covId;
 
     @Column(name="cov_nombre")

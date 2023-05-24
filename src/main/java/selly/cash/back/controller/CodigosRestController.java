@@ -144,7 +144,13 @@ public class CodigosRestController {
         Codigos codigoActual = codigoService.findAllByCodCodigo("[B@"+parts[0]);
 
         saveComision(codigoActual.getProId(), Long.parseLong(codigoPartir[0]), Long.parseLong(codigoPartir[1]));
-        codigoActual.setCodEstado("redimido");
+
+        if (codigoActual.getCodEstado().equals("test")){
+            System.out.println("Codigo de pruebas");
+        }else{
+            codigoActual.setCodEstado("redimido");
+        }
+
 
 
         System.out.println("el usuario actual"+codigoActual.getUsuId());

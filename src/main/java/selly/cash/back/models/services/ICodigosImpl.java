@@ -9,6 +9,7 @@ import selly.cash.back.models.entity.Marcas;
 import selly.cash.back.models.entity.Parametros;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ICodigosImpl implements ICodigosService{
@@ -29,7 +30,14 @@ public class ICodigosImpl implements ICodigosService{
     @Transactional(readOnly = true)
     public Codigos findAllByCodCodigo(String codCodigo ) {
 
-        Codigos codigo = codigosDao.findAllByCodCodigo(codCodigo);
+        Codigos codigo= null;
+        try {
+            codigo  = codigosDao.findAllByCodCodigo(codCodigo);
+        }catch (NoSuchElementException e){
+
+            e.toString();
+        }
+
         return codigo;
     }
 

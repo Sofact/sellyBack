@@ -21,6 +21,7 @@ import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @CrossOrigin(origins= "${myapp.datasource.url}")
 @RestController
@@ -165,14 +166,20 @@ public class CodigosRestController {
         System.out.println("ingreso a validar"+ codCodigo);
 
 
-        Codigos codigoActual = codigoService.findAllByCodCodigo("[B@"+codCodigo);
+            Codigos codigoActual = codigoService.findAllByCodCodigo("[B@" + codCodigo);
 
-        if(codigoActual.getCodEstado().equals("redimido") ){
-            System.out.println("entro por el redimido");
-            return false;
+        if(codigoActual != null) {
+
+
+            if (codigoActual.getCodEstado().equals("redimido")) {
+                System.out.println("entro por el redimido");
+                return false;
+            } else {
+                System.out.println("entro por el activo" + codigoActual.getCodEstado());
+                return true;
+            }
         }else{
-            System.out.println("entro por el activo"+codigoActual.getCodEstado());
-            return true;
+            return false;
         }
 
     }

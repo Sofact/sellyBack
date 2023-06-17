@@ -47,34 +47,40 @@ public class PdfController {
     public void generatePdf(@RequestBody Codigos codigo ,HttpServletResponse response) throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Document document = new Document();
-        PdfWriter.getInstance(document, baos);
-        document.setPageSize(new Rectangle(272, 567));
-        document.setMargins(5,2,0, 2);
-        document.open();
-
-
-
         String text = "https://sellycash.com/auth/loginCliente/" ;
         System.out.println("id en el save code:::"+ codigo.getCodId());
         Long cantidad=codigo.getCodId();
         Codigos cod = null;
+        PdfWriter.getInstance(document, baos);
+        int resultadoEntero = (int) (cantidad / 3);
+        float resultadoModulo = (cantidad %3);
+        if(resultadoModulo > 0){
+            resultadoEntero++;
+        }
+        System.out.println("ResultadoMathCeil::"+resultadoEntero);
+        int longitud= resultadoEntero* (80);
+        document.setPageSize(new Rectangle(272, longitud));
+        document.setMargins(5,2,0, 2);
+        document.open();
 
         for (int x=0; x<cantidad; x++) {
             codigo.setCodId((long) x);
-            //codigo.setCodCodigo(generadorService.generar(codigo));
+            codigo.setCodCodigo(generadorService.generar(codigo));
             codigo.setCodUrl(text+codigo.getCodCodigo());
             File f = new File("F:\\ANGULAR\\04-pipesApp\\src\\assets\\images\\"+codigo.getCodCodigo()+".png");
             System.out.println("Esta generando codigos::"+ codigo.getCodCodigo());
-          //  generadorService.generarQR(f, codigo.getCodUrl(), 76, 76);
+            //  generadorService.generarQR(f, codigo.getCodUrl(), 76, 76);
 
-            cod= codigoService.save(codigo);
+            //   cod= codigoService.save(codigo);
         }
         List<String> qrCodeTexts = new ArrayList<>();
         for( int cant=0; cant<cantidad; cant++){
             codigo.setCodId((long) cant);
             codigo.setCodCodigo(generadorService.generar(codigo));
-
+            codigo.setCodUrl(text+codigo.getCodCodigo());
             qrCodeTexts.add(text+codigo.getCodCodigo());
+
+            cod= codigoService.save(codigo);
         }
 
         PdfPTable table = new PdfPTable(6);
@@ -88,24 +94,28 @@ public class PdfController {
             image.setAlignment(4);
 
             PdfPCell imagen = (new PdfPCell(image));
-            imagen.setPaddingRight(22f);
-            imagen.setPaddingLeft(10f);
+            imagen.setPaddingRight(16f);
+            imagen.setPaddingLeft(6f);
+            imagen.setPaddingTop(2.8f);
+
+
+
 
             System.out.println("El codigo::"+codigo.getProId());
             Producto producto = productoService.findById(codigo.getProId());
             System.out.println("El producto::"+producto.getProDescripcion());
-            PdfPCell cell = new PdfPCell(new Phrase(producto.getProDescripcion() , new Font(Font.FontFamily.HELVETICA, 8)));
+            PdfPCell cell = new PdfPCell(new Phrase(producto.getProDescripcion() , new Font(Font.FontFamily.HELVETICA, 7)));
             cell.setRotation(-90);
-          //  cell.setPaddingTop(5);
-            cell.setPadding(0f);
+            //  cell.setPaddingTop(5);
+            cell.setPaddingLeft(1f);
             cell.setPaddingTop(8);
             cell.setFixedHeight(0f);
 
 
 
             table.setWidthPercentage(100);
-            table.setSpacingBefore(15f);
-            table.setSpacingAfter(25f);
+            table.setSpacingBefore(14f);
+            table.setSpacingAfter(79f);
             table.setHorizontalAlignment(4);
 
             table.addCell(imagen);
@@ -114,7 +124,7 @@ public class PdfController {
 
 
 
-         //   PdfPCell cell = new PdfPCell(new Phrase("Texto de ejemplo"));
+            //   PdfPCell cell = new PdfPCell(new Phrase("Texto de ejemplo"));
             // Agregamos el texto rotado -90 grados
             /*
             Graphics2D graphics = qrCodeImage.createGraphics();
@@ -129,9 +139,9 @@ public class PdfController {
             graphics.dispose();
 */
 
-        //    paragraph.add(image);
-         //  paragraph.setSpacingBefore(30);
-        System.out.println("El contador:::"+contador);
+            //    paragraph.add(image);
+            //  paragraph.setSpacingBefore(30);
+            System.out.println("El contador:::"+contador);
             if(contador==3){
                 System.out.println("Ingreso al if:::"+contador);
                 table.completeRow();

@@ -37,6 +37,26 @@ public class ProductosController {
         return productoService.save(producto);
     }
 
+    @PutMapping ("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Producto update(@RequestBody Producto producto){
+
+        System.out.println("UPDATE Producto:::"+ producto.getProId());
+
+        Producto productoActual = productoService.findById(producto.getProId());
+
+        System.out.println("ProductoActual::"+ productoActual.getProValor());
+        System.out.println("ProductoOriginal::"+ producto.getProValor());
+
+        productoActual.setProDescripcion(producto.getProDescripcion());
+        productoActual.setProReferencia(producto.getProReferencia());
+        productoActual.setProValor(producto.getProValor());
+
+        System.out.println("ProductoFinal::"+ productoActual.getProValor());
+
+        return productoService.save(productoActual);
+    }
+
     @DeleteMapping("/op/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Long delete (@PathVariable long id){

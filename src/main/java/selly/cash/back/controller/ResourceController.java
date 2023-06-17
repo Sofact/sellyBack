@@ -11,16 +11,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RestController
 
 public class ResourceController {
-/*
-    @Bean
-    public WebMvcConfigurer corsConfigurerCodigoLogin() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("${myapp.datasource.url}").allowedMethods("GET", "POST","PUT", "DELETE", "OPTIONS");
-            }
-        };
-    }*/
+    /*
+        @Bean
+        public WebMvcConfigurer corsConfigurerCodigoLogin() {
+            return new WebMvcConfigurer() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**").allowedOrigins("${myapp.datasource.url}").allowedMethods("GET", "POST","PUT", "DELETE", "OPTIONS");
+                }
+            };
+        }*/
     @Configuration
     @EnableWebMvc
     public class WebConfig implements WebMvcConfigurer {

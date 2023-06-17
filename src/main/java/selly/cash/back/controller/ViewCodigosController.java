@@ -2,9 +2,7 @@ package selly.cash.back.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import selly.cash.back.models.entity.Codigos;
 import selly.cash.back.models.entity.ViewCodigos;
-import selly.cash.back.models.entity.ViewComision;
 import selly.cash.back.models.services.IViewCodigosService;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class ViewCodigosController {
 
         System.out.println("Codigos/all");
 
-        return null;// codigoService.findById(id);
+        return null;// viewCodigosService.findById(id);
     }
 
     @GetMapping("/all")
